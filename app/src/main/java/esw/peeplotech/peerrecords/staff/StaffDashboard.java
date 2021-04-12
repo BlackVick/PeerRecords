@@ -570,6 +570,9 @@ public class StaffDashboard extends AppCompatActivity implements DeviceListener 
 
                         writer.write(sb.toString());
 
+                        //send file
+                        sendReceive.writeData(newFile);
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
 
@@ -579,9 +582,6 @@ public class StaffDashboard extends AppCompatActivity implements DeviceListener 
                     }
 
                 }
-
-                //send file
-                sendReceive.writeData(newFile);
 
             }
 
@@ -788,6 +788,9 @@ public class StaffDashboard extends AppCompatActivity implements DeviceListener 
 
                 writer.write(sb.toString());
 
+                //send file
+                sendReceive.writeData(newFile);
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
 
@@ -798,8 +801,7 @@ public class StaffDashboard extends AppCompatActivity implements DeviceListener 
 
         }
 
-        //send file
-        sendReceive.writeData(newFile);
+
     }
 
     public static boolean copyFile(InputStream inputStream, OutputStream out) {
