@@ -185,6 +185,7 @@ public class StaffDashboard extends AppCompatActivity implements DeviceListener 
 
                 return true;
             }
+
         });
 
         //get current user
