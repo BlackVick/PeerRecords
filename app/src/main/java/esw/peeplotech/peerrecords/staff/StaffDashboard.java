@@ -760,47 +760,49 @@ public class StaffDashboard extends AppCompatActivity implements DeviceListener 
 
             }
 
+            //write to file
+            List<Record> recordList = new Database(StaffDashboard.this).getAllRecords();
+            for (Record theRecord : recordList){
+
+
+                try (FileWriter writer = new FileWriter(newFile, true)) {
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(theRecord.getRecord_id());
+                    sb.append(',');
+                    sb.append(theRecord.getStaff_username());
+                    sb.append(',');
+                    sb.append(theRecord.getStudent_username());
+                    sb.append(',');
+                    sb.append(theRecord.getScore());
+                    sb.append(',');
+                    sb.append(theRecord.getTimestamp());
+                    sb.append(',');
+                    sb.append(theRecord.getRecord_status());
+                    sb.append(',');
+                    sb.append(theRecord.getRecord_reason());
+                    sb.append('\n');
+
+                    writer.write(sb.toString());
+
+                    //send file
+                    sendReceive.writeData(newFile);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                }
+
+            }
+
         } catch (IOException | ParseException e) {
         }
 
 
-        //write to file
-        List<Record> recordList = new Database(StaffDashboard.this).getAllRecords();
-        for (Record theRecord : recordList){
 
-
-            try (FileWriter writer = new FileWriter(newFile, true)) {
-
-                StringBuilder sb = new StringBuilder();
-                sb.append(theRecord.getRecord_id());
-                sb.append(',');
-                sb.append(theRecord.getStaff_username());
-                sb.append(',');
-                sb.append(theRecord.getStudent_username());
-                sb.append(',');
-                sb.append(theRecord.getScore());
-                sb.append(',');
-                sb.append(theRecord.getTimestamp());
-                sb.append(',');
-                sb.append(theRecord.getRecord_status());
-                sb.append(',');
-                sb.append(theRecord.getRecord_reason());
-                sb.append('\n');
-
-                writer.write(sb.toString());
-
-                //send file
-                sendReceive.writeData(newFile);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-
-        }
 
 
     }
